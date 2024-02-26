@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UITableViewController {
     var pictures = [String]()
- 
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,8 +16,6 @@ class ViewController: UITableViewController {
         title = "Storm Viewer"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareApp))
-
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
@@ -49,13 +46,6 @@ class ViewController: UITableViewController {
             // 3: now push it onto the navigation controller
             navigationController?.pushViewController(vc, animated: true)
         }
-    }
-    @objc func shareApp() {
-        let items: [Any] = ["This app is my favorite", URL(string: "https://www.stormviewer.com")!]
-
-        let vc = UIActivityViewController(activityItems: items, applicationActivities: [])
-        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-        present(vc, animated: true)
     }
 }
 
